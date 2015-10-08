@@ -38,6 +38,19 @@
             background-repeat:no-repeat;
             position:fixed;
         }
+        h4 {
+            margin:0px;
+        }
+
+        .clickable-image {
+            border-radius:10px;
+            transition: border-radius 0.1s;
+
+        }
+        .clickable-image:hover {
+            border-radius:20px;
+            opacity:0.9;
+        }
     </style>
 </head>
 <body>
@@ -55,26 +68,33 @@
       <main class="mdl-layout__content">
         <div class="page-content mdl-color--grey-200">
             <div id='biohack-academy' class='section mdl-shadow--2dp'>
-                <h2>BioHack Academy</h2>
+                <h2>BioHack Academy #2 results</h2>
                 <p>Ten week program at waag society to build an open-source bioreactor.</p>
                 <ul>
                     <li><a href='#parametric-tube-racks'>Parametric tube racks</a></li>
+                    <li><a href='#parametric-tube-racks'>Platoniser</a></li>
                 </ul>
                 <hr>
                 <h3 id='parametric-tube-racks'>Parametric tube-racks</h3>
-                <p>Parametrically designed tube racks using OpenSCAD.</p>
                 <div class='mdl-grid'>
-                    <div class='mdl-cell mdl-cell--6-col'>
-                        <h4>Square tube rack</h4>
-                        <a href='https://github.com/dp50mm/tubeRackSquare'>repository</a>
+                    <div class='mdl-cell mdl-cell--4-col'>
+                        <a href='https://github.com/dp50mm/tubeRackSquare'>
+                        <img src='../images/holderplatesquare.svg' width='90%' class='clickable-image'>
+                        </a>
                     </div>
-                    <div class='mdl-cell mdl-cell--6-col'>
-                        <h4>Circular tube rack</h4>
-                        <a href='https://github.com/dp50mm/tubeRackCircular'>repository</a>
+                    <div class='mdl-cell mdl-cell--4-col'>
+                        <a href='https://github.com/dp50mm/tubeRackCircular'><img src='../images/tubeRackCircular27.png' width='90%' class='clickable-image'></a>
+                    </div>
+                    <div class='mdl-cell mdl-cell--4-col'>
+                        <a href='https://github.com/dp50mm/tubeRackSquare'>
+                            <img src='../images/woodenrack.jpg' width='90%' class='clickable-image'>
+                        </a>
                     </div>
                 </div>
+
+                <p><a href='http://www.openscad.org/'>OpenSCAD</a> scripts to generate rectangular and circular test-tube holders, manufacturable through lasercutting with various materials.</p>
                 <hr>
-                <h3>The virtualiser (digital microscope)</h3>
+                <h3>Platoniser</h3>
                 <p>features:</p>
                 <ul>
                     <li>Portable</li>
