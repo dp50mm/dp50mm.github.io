@@ -2,233 +2,87 @@
 <head>
     <title>Erwin github</title>
     <link href='https://fonts.googleapis.com/css?family=Dosis:400,200,600,700' rel='stylesheet' type='text/css'>
-    <link href="/resources/material.min.css">
+    <link href="../resources/material.min.css" rel="stylesheet" type='text/css'>
     <style>
         body {
             font-family: 'Dosis', sans-serif;
             margin:0px;
             padding:0px;
         }
-        .menu-container {
-            padding:2px;
-            width:100%;
-            position:fixed;
-            top:0px;
-            left:0px;
-            height:25px;
+        h1, h2, h3 {
+            font-family: 'Dosis', sans-serif;
+        }
+        .page-content {
+            padding:40px;
+            padding-left:5px;
+        }
+        .section {
+            padding:20px;
             background:white;
-            border-bottom:1px dashed grey;
+            border-radius:3px;
+            border: 1px dashed rgb(50,160,100);
+            margin-bottom:10px;
         }
-
-        .menu-container > a {
-            color:grey;
-            font-weight:700;
-        }
-
-        .about-container {
-            position:fixed;
-            width:30px;
-        }
-        .about-slider {
-            position:relative;
-            width:200px;
-            left:-200px;
-            background:
-        }
-        .content-container {
-            margin-left:30px;
+        .navigation-text {
+            margin-left:40px;
         }
     </style>
 </head>
 <body>
-<div>
+    <!-- No header, and the drawer stays open on larger screens (fixed drawer). -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">dp50mm</span>
 
-    <div class='about-container'>
-        <div class='about-slider'>
-        <h1><a href="https://github.com/dp50mm"><img src="/images/github.jpg" width=100px height=100px></a> My github projects</h1>
-        <p>who am I? <a href="http://www.erwinhoogerwoord.nl">erwin</a></p>
-        <p>On this page you will find an overview of my recent open source activities.
-            I just started with the BioHack Academy at Waag society which is my main focus at this moment.</p>
-        </div>
-    </div>
-    <div class='introduction'>
-    </div>
-    <div class='content-container'>
-        <div id='biohack-academy'>
-            <div>
-                <h2>Biohack academy projecten</h2>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="http://www.erwinhoogerwoord.nl">erwinhoogerwoord.nl</a>
+            <hr>
+            <p class='navigation-text'>This page gives an overview of my github repositories.</p>
+            <a class="mdl-navigation__link" href="#d3js-workshop">D3js workshop</a>
+            <a class="mdl-navigation__link" href="#biohack-academy">BioHack Academy</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content mdl-color--grey-200">
+            <div id='biohack-academy' class='section mdl-shadow--2dp'>
+                <h2>BioHack Academy</h2>
+                <p>Ten week program at waag society to build an open-source bioreactor.</p>
                 <ul>
-                    <li>Tuberack
-                        <ul>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackSquare">tubeRackSquare</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackCircular">tubeRackCircular</a>
-                            </li>
-                        </ul>
-                    </li>
+                    <li><a href='#parametric-tube-racks'>Parametric tube racks</a></li>
                 </ul>
-            </div><div>
-                <h2>Biohack academy projecten</h2>
+                <hr>
+                <h3 id='parametric-tube-racks'>Parametric tube-racks</h3>
+                <p>Parametrically designed tube racks using OpenSCAD.</p>
+                <div class='mdl-grid'>
+                    <div class='mdl-cell mdl-cell--6-col'>
+                        <h4>Square tube rack</h4>
+                        <a href='https://github.com/dp50mm/tubeRackSquare'>repository</a>
+                    </div>
+                    <div class='mdl-cell mdl-cell--6-col'>
+                        <h4>Circular tube rack</h4>
+                        <a href='https://github.com/dp50mm/tubeRackCircular'>repository</a>
+                    </div>
+                </div>
+                <hr>
+                <h3>The virtualiser (digital microscope)</h3>
+                <p>features:</p>
                 <ul>
-                    <li>Tuberack
-                        <ul>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackSquare">tubeRackSquare</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackCircular">tubeRackCircular</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><div>
-                <h2>Biohack academy projecten</h2>
-                <ul>
-                    <li>Tuberack
-                        <ul>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackSquare">tubeRackSquare</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackCircular">tubeRackCircular</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><div>
-                <h2>Biohack academy projecten</h2>
-                <ul>
-                    <li>Tuberack
-                        <ul>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackSquare">tubeRackSquare</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackCircular">tubeRackCircular</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><div>
-                <h2>Biohack academy projecten</h2>
-                <ul>
-                    <li>Tuberack
-                        <ul>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackSquare">tubeRackSquare</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackCircular">tubeRackCircular</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><div>
-                <h2>Biohack academy projecten</h2>
-                <ul>
-                    <li>Tuberack
-                        <ul>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackSquare">tubeRackSquare</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackCircular">tubeRackCircular</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><div>
-                <h2>Biohack academy projecten</h2>
-                <ul>
-                    <li>Tuberack
-                        <ul>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackSquare">tubeRackSquare</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackCircular">tubeRackCircular</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><div>
-                <h2>Biohack academy projecten</h2>
-                <ul>
-                    <li>Tuberack
-                        <ul>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackSquare">tubeRackSquare</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackCircular">tubeRackCircular</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><div>
-                <h2>Biohack academy projecten</h2>
-                <ul>
-                    <li>Tuberack
-                        <ul>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackSquare">tubeRackSquare</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackCircular">tubeRackCircular</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><div>
-                <h2>Biohack academy projecten</h2>
-                <ul>
-                    <li>Tuberack
-                        <ul>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackSquare">tubeRackSquare</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackCircular">tubeRackCircular</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><div>
-                <h2>Biohack academy projecten</h2>
-                <ul>
-                    <li>Tuberack
-                        <ul>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackSquare">tubeRackSquare</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackCircular">tubeRackCircular</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><div>
-                <h2>Biohack academy projecten</h2>
-                <ul>
-                    <li>Tuberack
-                        <ul>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackSquare">tubeRackSquare</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/dp50mm/tubeRackCircular">tubeRackCircular</a>
-                            </li>
-                        </ul>
-                    </li>
+                    <li>Portable</li>
+                    <li>Automatic focus</li>
+                    <li>Magnification: 50x</li>
+                    <li>Automatic web upload</li>
+                    <li>Database system</li>
                 </ul>
             </div>
+            <div id='d3js-workshop' class='section mdl-shadow--2dp'>
+                <h2>D3js Workshop</h2>
+                <p>Sometimes I'll give workshops on creating data visualisations with d3.js.
+                If you are participating in such a workshop you can find the exercise code we
+                will be using here. Otherwise you are free to download it anyway of course.</p>
+                <p>Exercise code @: <a href='https://github.com/dp50mm/d3jsworkshop'>https://github.com/dp50mm/d3jsworkshop</a></p>
+            </div>
         </div>
-        <div id='other-projects'>
-            <h2>Other Projects</h2>
-            <p>Do I do other things</p>
-        </div>
+      </main>
     </div>
-</div>
 </body>
+</html>
