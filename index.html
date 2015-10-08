@@ -51,6 +51,10 @@
             border-radius:20px;
             opacity:0.9;
         }
+        .inverse {
+            background-color: rgb(50,50,50);
+            color:white;
+        }
     </style>
 </head>
 <body>
@@ -59,14 +63,28 @@
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title"><a href='http://www.github.com/dp50mm/'><img src='../images/github.jpg' width=40px>dp50mm</a></span>
         <br><br><br><br><br>
-        <p class='navigation-text'><a class="mdl-navigation__link" href="http://www.erwinhoogerwoord.nl">erwinhoogerwoord.nl</a></p>
+        <p class='navigation-text'><a href="http://www.erwinhoogerwoord.nl">erwinhoogerwoord.nl</a></p>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="#d3js-workshop">D3js workshop</a>
+            <a class='mdl-navigation__link' href='#chaos-theory-workshop'>Chaos theory workshop</a>
             <a class="mdl-navigation__link" href="#biohack-academy">BioHack Academy</a>
+            <a class="mdl-navigation__link" href="#d3js-workshop">D3js workshop</a>
         </nav>
       </div>
       <main class="mdl-layout__content">
         <div class="page-content mdl-color--grey-200">
+            <div id='chaos-theory-workshop' class='section inverse mdl-shadow--2dp'>
+                <div class='mdl-grid'>
+                    <div class='mdl-cell--5-col'>
+                        <h2>Chaos theory workshop</h2>
+                        <p>MORE INFORMATION COMING SOON!<br>If you want to participate and/or help with preparations I will be forever grateful.</p>
+                        <p>We will be using <a href='http://d3js.org/'>d3.js</a> (and maybe <a href='http://threejs.org/'>three.js</a> for 3d stuff) and I will prepare all of the boilerplate beforehand.</p>
+                        <h3>Why?</h3>
+                        <p>A couple of weeks ago I read this <a href='https://en.wikipedia.org/wiki/Chaos:_Making_a_New_Science'>book</a>
+                            and I was inspired.</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
             <div id='biohack-academy' class='section mdl-shadow--2dp'>
                 <h2>BioHack Academy #2 results</h2>
                 <p>Ten week program at waag society to build an open-source bioreactor.</p>
@@ -111,6 +129,7 @@
                 will be using here. Otherwise you are free to download it anyway of course.</p>
                 <p>Exercise code @: <a href='https://github.com/dp50mm/d3jsworkshop'>https://github.com/dp50mm/d3jsworkshop</a></p>
             </div>
+            <div style='padding:50px;'>
         </div>
       </main>
     </div>
