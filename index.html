@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>Erwin github</title>
+    <title>dp50mm</title>
     <link href='https://fonts.googleapis.com/css?family=Dosis:400,200,600,700' rel='stylesheet' type='text/css'>
     <link href="../resources/material.min.css" rel="stylesheet" type='text/css'>
     <style>
@@ -20,11 +20,23 @@
             padding:20px;
             background:white;
             border-radius:3px;
-            border: 1px dashed rgb(50,160,100);
             margin-bottom:10px;
         }
         .navigation-text {
             margin-left:40px;
+        }
+        .mdl-layout-title {
+            font-family: 'Dosis', sans-serif;
+            font-size:40px;
+            margin-top:20px;
+            font-weight:600;
+        }
+        .mdl-layout__drawer {
+            background-image: url('../images/timespherecomponent.svg');
+            background-size:650px 650px;
+            background-position:-70px -250px;
+            background-repeat:no-repeat;
+            position:fixed;
         }
     </style>
 </head>
@@ -32,12 +44,10 @@
     <!-- No header, and the drawer stays open on larger screens (fixed drawer). -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
       <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">dp50mm</span>
-
+        <span class="mdl-layout-title"><a href='http://www.github.com/dp50mm/'><img src='../images/github.jpg' width=40px>dp50mm</a></span>
+        <br><br><br><br><br>
+        <p class='navigation-text'><a class="mdl-navigation__link" href="http://www.erwinhoogerwoord.nl">erwinhoogerwoord.nl</a></p>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="http://www.erwinhoogerwoord.nl">erwinhoogerwoord.nl</a>
-            <hr>
-            <p class='navigation-text'>This page gives an overview of my github repositories.</p>
             <a class="mdl-navigation__link" href="#d3js-workshop">D3js workshop</a>
             <a class="mdl-navigation__link" href="#biohack-academy">BioHack Academy</a>
         </nav>
