@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+    <title>Chaos theory workshop</title>
+    <link href='https://fonts.googleapis.com/css?family=Dosis:400,200,600,700' rel='stylesheet' type='text/css'>
+    <link href="../resources/material.min.css" rel="stylesheet" type='text/css'>
+    <style>
+        body {
+            font-family: 'Dosis', sans-serif;
+            margin:0px;
+            padding:0px;
+        }
+        h1, h2, h3 {
+            font-family: 'Dosis', sans-serif;
+        }
+        .page-content {
+            padding:40px;
+            padding-left:5px;
+        }
+        .section {
+            padding:20px;
+            background:white;
+            border-radius:3px;
+            margin-bottom:10px;
+        }
+        .navigation-text {
+            margin-left:40px;
+        }
+        .mdl-layout-title {
+            font-family: 'Dosis', sans-serif;
+            font-size:40px;
+            margin-top:20px;
+            font-weight:600;
+        }
+        .mdl-layout__drawer {
+            background-image: url('../images/timespherecomponent.svg');
+            background-size:650px 650px;
+            background-position:-70px -250px;
+            background-repeat:no-repeat;
+            position:fixed;
+        }
+        h4 {
+            margin:0px;
+        }
+
+        .clickable-image {
+            border-radius:10px;
+            transition: border-radius 0.1s;
+
+        }
+        .clickable-image:hover {
+            border-radius:20px;
+            opacity:0.9;
+        }
+        .inverse {
+            background-color: rgb(50,50,50);
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <!-- No header, and the drawer stays open on larger screens (fixed drawer). -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title"><a href='http://www.github.com/dp50mm/'><img src='../images/github.jpg' width=40px>dp50mm</a></span>
+        <br><br><br><br><br>
+        <p class='navigation-text'><a href="http://www.erwinhoogerwoord.nl">erwinhoogerwoord.nl</a></p>
+        <nav class="mdl-navigation">
+            <a class='mdl-navigation__link' href='#chaos-theory-workshop'>Chaos theory workshop</a>
+            <a class="mdl-navigation__link" href="#biohack-academy">BioHack Academy</a>
+            <a class="mdl-navigation__link" href="#d3js-workshop">D3js workshop</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content mdl-color--grey-200">
+            <div id='chaos-theory-workshop' class='section mdl-shadow--2dp'>
+                <div class='mdl-grid'>
+                    <div class='mdl-cell--5-col'>
+                        <h1>Chaos theory workshop</h1>
+                        <p>Why a workshop on chaos theory?</p>
+                        <p>We will be using <a href='http://d3js.org/'>d3.js</a> (and maybe <a href='http://threejs.org/'>three.js</a> for 3d stuff) and I will prepare all of the boilerplate beforehand.</p>
+                        <h3>Why?</h3>
+                        <p>A couple of weeks ago I read this <a href='https://en.wikipedia.org/wiki/Chaos:_Making_a_New_Science'>book</a>
+                            and I was inspired.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style='padding:50px;'>
+        </div>
+      </main>
+    </div>
+</body>
+</html>
