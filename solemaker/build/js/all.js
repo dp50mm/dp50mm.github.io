@@ -585,7 +585,7 @@ $(document).ready(function () {
     n_sensors: [0, 0]
   };
   console.log(SoleMakerBackendConnection);
-  var solemakerBackend = new SoleMakerBackendConnection("/data/test_data.json");
+  var solemakerBackend = new SoleMakerBackendConnection("/solemaker/data/test_data.json");
   solemakerBackend.getSensorData(function (data) {
     var x_counter = 0;
     var y_counter = 0;
