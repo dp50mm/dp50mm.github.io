@@ -753,10 +753,10 @@ module.exports = function compareSegments(le1, le2) {
 };
 
 },{"./compare_events":7,"./equals":10,"./signed_area":13}],9:[function(require,module,exports){
-module.exports = { 
-  NORMAL:               0, 
-  NON_CONTRIBUTING:     1, 
-  SAME_TRANSITION:      2, 
+module.exports = {
+  NORMAL:               0,
+  NON_CONTRIBUTING:     1,
+  SAME_TRANSITION:      2,
   DIFFERENT_TRANSITION: 3
 };
 
@@ -934,8 +934,9 @@ function possibleIntersection(se1, se2, queue) {
 
   if (nintersections === 2 && se1.isSubject === se2.isSubject){
     if(se1.contourId === se2.contourId){
-    console.warn('Edges of the same polygon overlap',
-      se1.point, se1.otherEvent.point, se2.point, se2.otherEvent.point);
+    // console.warn('Edges of the same polygon overlap',
+    //   se1.point, se1.otherEvent.point, se2.point, se2.otherEvent.point);
+        throw new Error('Edges of the same polygon overlap');
     }
     //throw new Error('Edges of the same polygon overlap');
     return 0;
