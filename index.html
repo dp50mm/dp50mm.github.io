@@ -15,8 +15,12 @@
         .page-content {
             padding:40px;
             padding-left:5px;
-            width:500px;
         }
+        .blog-post {
+            max-width:500px;
+            margin-left:10px;
+        }
+
         .section {
             padding:20px;
             background:white;
@@ -70,267 +74,269 @@
       </div>
       <main class="mdl-layout__content">
         <div class="page-content mdl-color--grey-200">
-            <h1 id="AR">Aruco AR iOS implementation tutorial</h1>
+            <div class="blog-post">
+                <h1 id="AR">Phenotype Augmented Reality iOS app <span style="color:red;">[work-in-progress]</span></h1>
 
-            <h2>Overview</h2>
-            <ol>
-              <li>
-                Augmented reality
-              </li>
-              <li>
-                Smartphone platform
-              </li>
-              <li>
-                Interaction
-              </li>
-              <li>
-                Existing technology
-              </li>
-              <li>
-                Aruco markers
-              </li>
-              <li>
-                Implementation on iOS
-              </li>
-              <li>
-                Camera calibration
-              </li>
-              <li>
-                Marker detection & orientation
-              </li>
-              <li>
-                Image management
-              </li>
-              <li>
-                Neural network training
-              </li>
-              <li>
-                Overlays
-              </li>
-            </ol>
-            <h2>Tutorial</h2>
-            <p>
-              This is a step-by-step tutorial for implementing Aruco marker detection
-              and Neural Network phenotype detection in iOS with information overlays for <em>augmenting reality</em>.
-              It is written as documentation for <a href="http://www.erwinhoogerwoord.nl">my</a> graduation project.
-              The goal of the project is to make observations and conclusions in experiments with growing plants more easily shareable by augmenting reality with digitally stored and analysed images.
-            </p>
-            <h3>Observations</h3>
-            <p>
-              The use of <em>visual communication</em> in the form of illustrations goes back a long way in biology.
-            </p>
-            <img src="images/Louis_Renard_colorful_fish.jpg" width="100%" />
-            <p class="img-source">
-              <a href="https://en.wikipedia.org/wiki/Biological_illustration#/media/File:Louis_Renard_colorful_fish.jpg">Illustration from the book Histoire naturelle by Louis Renard, published in Amsterdam in 1754.</a>
-            </p>
-            <p>
-              Making drawings of the phenomenon that is the subject of study is still regular practice in high-school.
-            </p>
-            <h3>Digital imaging</h3>
-            <p>
-              In the past this required a lot of sketching skills. These days images can quickly be captured through digital cameras everyone has on them everyday.
-              This enables new modes of communication in the practice of biological research.
-            </p>
-            <h3>Visual storytelling</h3>
-            <p>
-              By compiling a series of images an order in events can be implied and highlighted, experience can be recreated or synthesized.
-            </p>
-            <img src="images/FoodStoriesillustrations-10.png" width="100%"  />
-            <h3>Interactive visuals</h3>
-            <p>
-              Another step further is to create interactive graphics that let the observer navigate an experience motivated by their own intentionality.
-            </p>
-            <div id="franks-interactive-drawing">
-            </div>
-            <h3>Possibilities</h3>
-            <p>
-              The application to be developed in this tutorial allows you to more easily compile series and collections of images along dimensions such as location, orientation and time.
-              A next step is to increase the number of dimensions for ordering images by generating algorithms (neural networks) to detect phenomena in the image.
-            </p>
-            <p>
-              The Aruco markers are used for re-constructing 3d points from the 2d image plane.
-              Because in the garden set-ups photographed the aruco markers remain stationary the camera orientation can be deducted from the marker orientation.
-            </p>
-            <h3>Functionalities</h3>
-            <ul>
-              <li>
-                Re-orient images to match perspectives based on aruco markers.
-              </li>
-              <li>
-                Train neural networks to detect various biological phenomena.
-              </li>
-            </ul>
-            <p>
-              The Neural Networks are used for detecting various phenomena in the image.
-              The goal is to create an application where images can be re-oriented to match previous perspectives on reality as well as real-time video feeds.
-              In this tutorial we go over the various steps of image processing necessary to produce the functionalities described above.
-            </p>
-            <h2 id="augmented-reality">Augmented reality</h2>
-            <img src="/images/AR_mockup.png" width="100%"  />
-            <p>
-              Augmented reality is a live direct or indirect view of the physical real world
-              being augmented by a computer for example.
-            </p>
-            <h2 id="smartphone-platform">Smartphone platform</h2>
-            <p>
-              What is commonly known as the smartphone is a computing platform ready to use for augmented reality development.
-              <ul>
-                <li>
-                  It provides a camera to digitally capture a perspective on reality.
-                </li>
-                <li>
-                  A computer to analyse and augment the data.
-                </li>
-                <li>
-                  A touch-screen to display and interact with the captured data.
-                </li>
-              </ul>
-            </p>
+                <h2>Overview</h2>
+                <ol>
+                  <li>
+                    Augmented reality
+                  </li>
+                  <li>
+                    Smartphone platform
+                  </li>
+                  <li>
+                    Interaction
+                  </li>
+                  <li>
+                    Existing technology
+                  </li>
+                  <li>
+                    Aruco markers
+                  </li>
+                  <li>
+                    Implementation on iOS
+                  </li>
+                  <li>
+                    Camera calibration
+                  </li>
+                  <li>
+                    Marker detection & orientation
+                  </li>
+                  <li>
+                    Image management
+                  </li>
+                  <li>
+                    Neural network training
+                  </li>
+                  <li>
+                    Overlays
+                  </li>
+                </ol>
+                <h2>Tutorial</h2>
+                <p>
+                  This is a step-by-step tutorial for implementing Aruco marker detection
+                  and Neural Network phenotype detection in iOS with information overlays for <em>augmenting reality</em>.
+                  It is written as documentation for <a href="http://www.erwinhoogerwoord.nl">my</a> graduation project.
+                  The goal of the project is to make observations and conclusions in experiments with growing plants more easily shareable by augmenting reality with digitally stored and analysed images.
+                </p>
+                <h3>Observations</h3>
+                <p>
+                  The use of <em>visual communication</em> in the form of illustrations goes back a long way in biology.
+                </p>
+                <img src="images/Louis_Renard_colorful_fish.jpg" width="100%" />
+                <p class="img-source">
+                  <a href="https://en.wikipedia.org/wiki/Biological_illustration#/media/File:Louis_Renard_colorful_fish.jpg">Illustration from the book Histoire naturelle by Louis Renard, published in Amsterdam in 1754.</a>
+                </p>
+                <p>
+                  Making drawings of the phenomenon that is the subject of study is still regular practice in high-school.
+                </p>
+                <h3>Digital imaging</h3>
+                <p>
+                  In the past this required a lot of sketching skills. These days images can quickly be captured through digital cameras everyone has on them everyday.
+                  This enables new modes of communication in the practice of biological research.
+                </p>
+                <h3>Visual storytelling</h3>
+                <p>
+                  By compiling a series of images an order in events can be implied and highlighted, experience can be recreated or synthesized.
+                </p>
+                <img src="images/FoodStoriesillustrations-10.png" width="100%"  />
+                <h3>Interactive visuals</h3>
+                <p>
+                  Another step further is to create interactive graphics that let the observer navigate an experience motivated by their own intentionality.
+                </p>
+                <div id="franks-interactive-drawing">
+                </div>
+                <h3>Possibilities</h3>
+                <p>
+                  The application to be developed in this tutorial allows you to more easily compile series and collections of images along dimensions such as location, orientation and time.
+                  A next step is to increase the number of dimensions for ordering images by generating algorithms (neural networks) to detect phenomena in the image.
+                </p>
+                <p>
+                  The Aruco markers are used for re-constructing 3d points from the 2d image plane.
+                  Because in the garden set-ups photographed the aruco markers remain stationary the camera orientation can be deducted from the marker orientation.
+                </p>
+                <h3>Functionalities</h3>
+                <ul>
+                  <li>
+                    Re-orient images to match perspectives based on aruco markers.
+                  </li>
+                  <li>
+                    Train neural networks to detect various biological phenomena.
+                  </li>
+                </ul>
+                <p>
+                  The Neural Networks are used for detecting various phenomena in the image.
+                  The goal is to create an application where images can be re-oriented to match previous perspectives on reality as well as real-time video feeds.
+                  In this tutorial we go over the various steps of image processing necessary to produce the functionalities described above.
+                </p>
+                <h2 id="augmented-reality">Augmented reality</h2>
+                <img src="/images/AR_mockup.png" width="100%"  />
+                <p>
+                  Augmented reality is a live direct or indirect view of the physical real world
+                  being augmented by a computer for example.
+                </p>
+                <h2 id="smartphone-platform">Smartphone platform</h2>
+                <p>
+                  What is commonly known as the smartphone is a computing platform ready to use for augmented reality development.
+                  <ul>
+                    <li>
+                      It provides a camera to digitally capture a perspective on reality.
+                    </li>
+                    <li>
+                      A computer to analyse and augment the data.
+                    </li>
+                    <li>
+                      A touch-screen to display and interact with the captured data.
+                    </li>
+                  </ul>
+                </p>
 
-            <h2>Interaction</h2>
-            <p>
-              Image detection and analysis produces numerous augmented views.
-              In development and interaction it's useful to continuously have quick access to all of them.
-              With a horizontal scroll-view in iOS each of the views can be put next to each other.
-            </p>
-            <img src="/images/Scrollviewillustration-09.png" width="100%"  />
-            <h3>Views</h3>
-            <p>
-              The multiple views provide augmented perspectives on the live camera image-feed.
-            </p>
-            <h3>Image capture</h3>
-            <p>
-              With a button an image can be captured for storage.
-            </p>
-            <h2>iOS / iPhone camera</h2>
-            <p>
-              The iPhone has a powerful camera to capture live video streams for augmented reality applications.
-              It is controlable through the <a href="https://developer.apple.com/av-foundation/">AV Foundation framework</a> in the iOS operating system.
-            </p>
-            <h3>Real-time stream</h3>
-            <p>
-              The core of AR is the display and analysis of a live camera stream with overlays.
-            </p>
-            <h3>Image capture</h3>
-            <p>
-              In this application images can be captured to be integrated in the AR layers.
+                <h2>Interaction</h2>
+                <p>
+                  Image detection and analysis produces numerous augmented views.
+                  In development and interaction it's useful to continuously have quick access to all of them.
+                  With a horizontal scroll-view in iOS each of the views can be put next to each other.
+                </p>
+                <img src="/images/Scrollviewillustration-09.png" width="100%"  />
+                <h3>Views</h3>
+                <p>
+                  The multiple views provide augmented perspectives on the live camera image-feed.
+                </p>
+                <h3>Image capture</h3>
+                <p>
+                  With a button an image can be captured for storage.
+                </p>
+                <h2>iOS / iPhone camera</h2>
+                <p>
+                  The iPhone has a powerful camera to capture live video streams for augmented reality applications.
+                  It is controlable through the <a href="https://developer.apple.com/av-foundation/">AV Foundation framework</a> in the iOS operating system.
+                </p>
+                <h3>Real-time stream</h3>
+                <p>
+                  The core of AR is the display and analysis of a live camera stream with overlays.
+                </p>
+                <h3>Image capture</h3>
+                <p>
+                  In this application images can be captured to be integrated in the AR layers.
 
-            </p>
-            <h2 id="libraries">Libraries</h2>
-            <p>
-              This application of computer vision has  been built and implemented in various open and closed libraries.
-              To detect these the openCV library is used with the Aruco module.
-              <ul>
-                <li>
-                  <a href="http://opencv.org/">OpenCV</a>
-                </li>
-                <li>
-                  <a href="http://www.uco.es/investiga/grupos/ava/node/26">Aruco</a>
-                </li>
-              </ul>
-            </p>
-            <h2>Aruco markers</h2>
-            <p>
-              <a href="https://github.com/opencv/opencv_contrib/blob/master/modules/aruco/tutorials/aruco_detection/aruco_detection.markdown">Aruco tutorial</a>
-            </p>
-            <h3>Pose estimation</h3>
-            <p>
-              We want to know the rotation and translation for each detected marker.
-              The function estimatePoseSingleMarkers gives us these.
-              It takes the following attributes: corners, markerSize, cameraMatrix, distCoeffs, rvecs, tvecs.
-              The rvecs & tvecs are arrays of vectors.
-            </p>
-            <ul>
-              <li>
-                rvec: Rotation vector
-              </li>
-              <li>
-                tvec: Translation vector
-              </li>
-            </ul>
-            <p>
-              The detectMarkers function provides the initial array of markers together with the ids.
-              So to create the final output of markers we go through the following steps:
-            </p>
-            <ol>
-              <li>
-                get image
-              </li>
-              <li>
-                get camera parameters
-              </li>
-              <li>
-                get the camera parameters
-              </li>
-              <li>
-                detect markers
-              </li>
-              <li>
-                loop through markers for pose detection
-              </li>
-              <li>
-                Return poses to main application
-              </li>
-            </ol>
-            <h2>iOS Application architecture</h2>
-            <p>
+                </p>
+                <h2 id="libraries">Libraries</h2>
+                <p>
+                  This application of computer vision has  been built and implemented in various open and closed libraries.
+                  To detect these the openCV library is used with the Aruco module.
+                  <ul>
+                    <li>
+                      <a href="http://opencv.org/">OpenCV</a>
+                    </li>
+                    <li>
+                      <a href="http://www.uco.es/investiga/grupos/ava/node/26">Aruco</a>
+                    </li>
+                  </ul>
+                </p>
+                <h2>Aruco markers</h2>
+                <p>
+                  <a href="https://github.com/opencv/opencv_contrib/blob/master/modules/aruco/tutorials/aruco_detection/aruco_detection.markdown">Aruco tutorial</a>
+                </p>
+                <h3>Pose estimation</h3>
+                <p>
+                  We want to know the rotation and translation for each detected marker.
+                  The function estimatePoseSingleMarkers gives us these.
+                  It takes the following attributes: corners, markerSize, cameraMatrix, distCoeffs, rvecs, tvecs.
+                  The rvecs & tvecs are arrays of vectors.
+                </p>
+                <ul>
+                  <li>
+                    rvec: Rotation vector
+                  </li>
+                  <li>
+                    tvec: Translation vector
+                  </li>
+                </ul>
+                <p>
+                  The detectMarkers function provides the initial array of markers together with the ids.
+                  So to create the final output of markers we go through the following steps:
+                </p>
+                <ol>
+                  <li>
+                    get image
+                  </li>
+                  <li>
+                    get camera parameters
+                  </li>
+                  <li>
+                    get the camera parameters
+                  </li>
+                  <li>
+                    detect markers
+                  </li>
+                  <li>
+                    loop through markers for pose detection
+                  </li>
+                  <li>
+                    Return poses to main application
+                  </li>
+                </ol>
+                <h2>iOS Application architecture</h2>
+                <p>
 
-            </p>
-            <p>
-              OpenCV as a C library can be used on iOS through Objective-C.
-              The current standard for programming in iOS is the Swift programming language.
-              To use the capabilities of OpenCV in Swift wrapper code needs to be written.
-              On the one hand functions need to be called from Swift code and data needs to be returned from Objective C to the Swift function calls.
+                </p>
+                <p>
+                  OpenCV as a C library can be used on iOS through Objective-C.
+                  The current standard for programming in iOS is the Swift programming language.
+                  To use the capabilities of OpenCV in Swift wrapper code needs to be written.
+                  On the one hand functions need to be called from Swift code and data needs to be returned from Objective C to the Swift function calls.
 
-            </p>
-            <h3>Calling Objective-C functions from swift</h3>
-            <h3>Returning data to Swift functions</h3>
-            <p>
-              <a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35">Interacting With Objective-C Apis</a>
-              <br />
+                </p>
+                <h3>Calling Objective-C functions from swift</h3>
+                <h3>Returning data to Swift functions</h3>
+                <p>
+                  <a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35">Interacting With Objective-C Apis</a>
+                  <br />
 
-            </p>
-            <h2 id="Camera-calibration">Camera calibration</h2>
-            <p>
-              The lens system of a camera distorts the captured image.
-              The pose estimation function of the Aruco module requires parameters to correct for that distortion.
-              These are a <em>cameraMatrix</em> object and <em>distCoeffs</em> object as defined by the <a href="http://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html">OpenCV calib3d</a> camera calibration module.
-              In this part of the tutorial we go over how these are determined for a camera.
-            </p>
-            <h3>Distortion</h3>
-            <p>
-              The lens distortion can be categorized in two mayor transformations:
-            </p>
-              <ul>
-                <li>
-                  radial transformation
-                </li>
-                <li>
-                  tangential transformation
-                </li>
-              </ul>
-              <p>
-                OpenCV has tools to correct for this distortion in the form of a Camera Matrix object,
-                Algorithms to determine the distortion parameters of the lens as well as corrections for
-                applications.
-              </p>
-            </p>
-            <h3>Camera Matrix</h3>
-            <p>
-              The camera matrix contains the following parameters in a matrix format:
-              fx (focal length in pixel units)
-              fy (focal length in pixel units)
-              cx (center x)
-              cy (center y)
-              <br />
-              These parameters scale with the image resolution.
-              This is stored in a 3x3 matrix.
-            </p>
-            <h3>Distortion co-efficients</h3>
-            <p>
-              These are stored in a 5x1 matrix.
-            </p>
-            <div id="container">
+                </p>
+                <h2 id="Camera-calibration">Camera calibration</h2>
+                <p>
+                  The lens system of a camera distorts the captured image.
+                  The pose estimation function of the Aruco module requires parameters to correct for that distortion.
+                  These are a <em>cameraMatrix</em> object and <em>distCoeffs</em> object as defined by the <a href="http://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html">OpenCV calib3d</a> camera calibration module.
+                  In this part of the tutorial we go over how these are determined for a camera.
+                </p>
+                <h3>Distortion</h3>
+                <p>
+                  The lens distortion can be categorized in two mayor transformations:
+                </p>
+                  <ul>
+                    <li>
+                      radial transformation
+                    </li>
+                    <li>
+                      tangential transformation
+                    </li>
+                  </ul>
+                  <p>
+                    OpenCV has tools to correct for this distortion in the form of a Camera Matrix object,
+                    Algorithms to determine the distortion parameters of the lens as well as corrections for
+                    applications.
+                  </p>
+                </p>
+                <h3>Camera Matrix</h3>
+                <p>
+                  The camera matrix contains the following parameters in a matrix format:
+                  fx (focal length in pixel units)
+                  fy (focal length in pixel units)
+                  cx (center x)
+                  cy (center y)
+                  <br />
+                  These parameters scale with the image resolution.
+                  This is stored in a 3x3 matrix.
+                </p>
+                <h3>Distortion co-efficients</h3>
+                <p>
+                  These are stored in a 5x1 matrix.
+                </p>
+                <div id="container">
+                </div>
             </div>
         </div>
       </main>
