@@ -626,8 +626,6 @@ $(document).ready(function () {
   var outline_points = [];
   var voronoi_points = [];
 
-  outline_points = preset_outline;
-
   voronoi_points = cellularGridSeed(3, 3, editor_width, editor_height, 50);
 
   // COMPUTED VARS
@@ -713,7 +711,7 @@ $(document).ready(function () {
     redraw();
   }
 
-  var solemakerBackend = new SoleMakerBackendConnection("/data/test_data.json");
+  var solemakerBackend = new SoleMakerBackendConnection("http://dp50mm.github.io/solemaker/data/test_data.json");
   solemakerBackend.getSensorData(function (data) {
     var x_counter = 0;
     var y_counter = 0;
