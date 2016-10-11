@@ -123,6 +123,8 @@ function cellularGridSeed(nr_rows, nr_colls, width, height, padding) {
   return returnCells;
 }
 
+var preset_outline = [[21.40, 136.69], [5.33, 121.29], [0.45, 100.24], [18.18, 75.56], [48.05, 57.51], [70.7, 43.98], [122.12, 13.21], [149.59, 3.88], [168.33, 0.78], [184.72, 0.07], [199.26, 1.53], [216.53, 6.72], [230.11, 19.56], [232.95, 31.94], [228.35, 47.42], [212.52, 64.48], [195.59, 74.94], [182.50, 80.43], [168.44, 84.01], [156.42, 86.68], [112.01, 97.62], [73.48, 120.67], [42.85, 137.45]];
+
 /**
  * Construction layers is editable in the UI
  */
@@ -158,12 +160,38 @@ var construction_layers = [{
   order: 5
 }];
 
-function startGcode(speed, layerHeight) {
+function startUltiGCode(speed, layerHeight) {
+  var returnCode = ";FLAVOR:UltiGCode";
+  returnCode += "\r\n";
+  returnCode += "; TIME:400";
+  returnCode += "\r\n";
+  returnCode += "; MATERIAL:160";
+  returnCode += "\r\n";
+  returnCode += "; MATERIAL2:0";
+  returnCode += "\r\n";
+  returnCode += "; NOZZLE_DIAMETER:0.800000";
+  returnCode += "\r\n";
+  returnCode += "; NOZZLE_DIAMETER2:0.800000";
+  returnCode += "\r\n";
+  returnCode += "; Layer count:105";
+  returnCode += "\r\n";
+  returnCode += "; LAYER:0";
+  returnCode += "\r\n";
+  returnCode += "G21 ;Force to milimeters";
+  returnCode += "\r\n";
+  returnCode += "G0 F" + speed + " Z" + layerHeight;
+  returnCode += "\r\n";
+  return returnCode;
+}
+
+function startRepRapGcode(speed, layerHeight) {
   var returnCode = ";FLAVOR:RepRap";
   returnCode += "\r\n";
   returnCode += "M109 S250";
   returnCode += "\r\n";
   returnCode += "G90 ;absolute positioning";
+  returnCode += "\r\n";
+  returnCode += "G21 ;Force to milimeters";
   returnCode += "\r\n";
   returnCode += "M82 ;set extruder to absolute mode";
   returnCode += "\r\n";
@@ -218,9 +246,10 @@ function edgeWrite(startX, startY, endX, endY, print_extrusion, printer_settings
     var end_x = endX / printer_settings.DPMM; // Math.floor((endX/printer_settings.DPMM)*printer_settings.GCode_rounding)/printer_settings.GCode_rounding;
     var end_y = endY / printer_settings.DPMM; // Math.floor((endY/printer_settings.DPMM)*printer_settings.GCode_rounding)/printer_settings.GCode_rounding;
     var end_e = ext; // Math.floor((ext / printer_settings.DPMM)*printer_settings.GCode_rounding)/printer_settings.GCode_rounding;
-    returnCode += "G1 X " + start_x.toFixed(printer_settings.GCode_rounding) + " Y " + start_y.toFixed(printer_settings.GCode_rounding) + " E " + start_e.toFixed(printer_settings.GCode_rounding);
+
+    returnCode += "G1 X " + start_x.toFixed(printer_settings.GCode_rounding) + " Y " + start_y.toFixed(printer_settings.GCode_rounding) + " E " + start_e.toFixed(printer_settings.GCode_rounding) + "; edge start";
     returnCode += "\r\n";
-    returnCode += "G1 X " + end_x.toFixed(printer_settings.GCode_rounding) + " Y " + end_y.toFixed(printer_settings.GCode_rounding) + " E " + end_e.toFixed(printer_settings.GCode_rounding);
+    returnCode += "G1 X " + end_x.toFixed(printer_settings.GCode_rounding) + " Y " + end_y.toFixed(printer_settings.GCode_rounding) + " E " + end_e.toFixed(printer_settings.GCode_rounding) + "; edge end";
     returnCode += "\r\n";
   }
   return {
@@ -232,10 +261,11 @@ function edgeWrite(startX, startY, endX, endY, print_extrusion, printer_settings
 function edgeMove(startX, startY, endX, endY, print_extrusion, printer_settings) {
   var returnCode = "";
   var ext = print_extrusion;
-  if (startX > 0.05 * printer_settings.DPMM) {
+  if (true) {
+    // THERE WAS A DISTANCE CHECK HERE BUT NO IDEA WHY
     var start_x = startX / printer_settings.DPMM; // Math.floor((startX/printer_settings.DPMM)*printer_settings.GCode_rounding)/printer_settings.GCode_rounding;
     var start_y = startY / printer_settings.DPMM; // Math.floor((startY/printer_settings.DPMM)*printer_settings.GCode_rounding)/printer_settings.GCode_rounding;
-    var start_e = ext - 30; // Math.floor(((ext-printer_settings.retraction)/printer_settings.DPMM)*printer_settings.GCode_rounding)/printer_settings.GCode_rounding;
+    var start_e = ext - 2; // Math.floor(((ext-printer_settings.retraction)/printer_settings.DPMM)*printer_settings.GCode_rounding)/printer_settings.GCode_rounding;
     var end_x = endX / printer_settings.DPMM; // Math.floor((endX/printer_settings.DPMM)*printer_settings.GCode_rounding)/printer_settings.GCode_rounding;
     var end_y = endY / printer_settings.DPMM; // Math.floor((endY/printer_settings.DPMM)*printer_settings.GCode_rounding)/printer_settings.GCode_rounding;
     var end_e = ext; // Math.floor((ext / printer_settings.DPMM)*printer_settings.GCode_rounding)/printer_settings.GCode_rounding;
@@ -252,23 +282,24 @@ function edgeMove(startX, startY, endX, endY, print_extrusion, printer_settings)
 }
 
 function distance(x1, y1, x2, y2) {
-  return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+  var distance = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+  return distance;
 }
 
 /**
  * Configuration settings for the printer
  */
 
-var tempPIXELPITCH = 0.343;
+var tempPIXELPITCH = 1;
 var tempDPMM = 1 / tempPIXELPITCH;
 var printer_settings = {
-  PIXELPITCH: 0.343,
+  PIXELPITCH: 1,
   DPMM: 1 / tempPIXELPITCH,
   ext: 0,
   speed: 600,
   layerHeight: 0.3,
   currentLayer: 0,
-  extrusionCoefficient: 0.2,
+  extrusionCoefficient: 0.1,
   layers: 5,
   retraction: 3,
   slicedistance: 0.8 * tempDPMM,
@@ -317,12 +348,23 @@ function slice_single_polygon(polygon) {
     var scanlinePolygon = [[minX, y], [maxX, y], [maxX, y + printer_settings.slicedistance * 3], [minX, y + printer_settings.slicedistance * 3]];
     var intersected_polygons = [];
     var no_error = true;
-    try {
-      var intersected_polygons = martinez.intersection(scanlinePolygon, polygon);
-    } catch (e) {
-      // console.log(" y: "+y+" error: "+e);
-      no_error = false;
+    for (var errorAdjust = 0; errorAdjust < 2; errorAdjust += 0.1) {
+      try {
+        var adjustedScanline = scanlinePolygon;
+        adjustedScanline[0][0] -= errorAdjust;
+        adjustedScanline[1][0] += errorAdjust;
+        adjustedScanline[2][0] += errorAdjust;
+        adjustedScanline[3][0] -= errorAdjust;
+        intersected_polygons = martinez.intersection(scanlinePolygon, polygon);
+      } catch (e) {
+        console.log(" --------errorAdjust: " + errorAdjust + "  y: " + y + " error: " + e);
+        no_error = false;
+      }
+      if (no_error) {
+        errorAdjust = 3;
+      }
     }
+
     if (no_error) {
       /**
        * Get minimum and maximum values of the intersected polygons.
@@ -390,7 +432,8 @@ function construct_sole(construction_layers, construction_functions, printer_set
     Math.round(seeds[i][1] / scaling)]);
   }
 
-  var COMPILED_GCODE = startGcode(printer_settings.speed, printer_settings.layerHeight);
+  // var COMPILED_GCODE = startRepRapGcode(printer_settings.speed, printer_settings.layerHeight);
+  var COMPILED_GCODE = startRepRapGcode(printer_settings.speed, printer_settings.layerHeight);
 
   // Step 1: Building the actual layers from the construction 'layers'
   var layersData = [];
@@ -421,12 +464,12 @@ function construct_sole(construction_layers, construction_functions, printer_set
 
   console.log("compiling layers");
   var current_position = {
-    x: 0,
-    y: 0
+    x: 20,
+    y: 20
   };
   for (var i = 0; i < layersData.length; i++) {
     console.log("layer: " + i);
-    var layerIncrementCode = layerIncrement(layersData[i].speed, i, layersData[i].name, printer_settings.layerHeight);
+    var layerIncrementCode = layerIncrement(layersData[i].speed, i + 1, layersData[i].name, printer_settings.layerHeight);
     COMPILED_GCODE += layerIncrementCode;
     COMPILED_GCODE += "\r\n";
     for (var j = 0; j < layersData[i].components.length; j++) {
@@ -508,18 +551,35 @@ function compilePolygonFill(slicedContour, print_extrusion, printer_settings, cu
   var returnCode = "";
   var ext = print_extrusion;
 
+  console.log("moving from: " + current_position.x + " ," + current_position.y + " to: " + slicedContour[0][0] + "," + slicedContour[0][1]);
   var compiledMove = edgeMove(current_position.x, current_position.y, slicedContour[0][0], slicedContour[0][1], ext, printer_settings);
+  console.log(compiledMove.edgeCode);
   returnCode += compiledMove.edgeCode;
   ext = compiledMove.ext;
 
+  var leftRightToggle = "left"; // toggle left
   for (var i = 0; i < slicedContour.length; i++) {
-    var compiledEdge = edgeWrite(slicedContour[i][0], slicedContour[i][1], slicedContour[i][2], slicedContour[i][3], ext, printer_settings);
+    var compiledEdge;
+    if (leftRightToggle == "left") {
+      compiledEdge = edgeWrite(slicedContour[i][0], slicedContour[i][1], slicedContour[i][2], slicedContour[i][3], ext, printer_settings);
+      leftRightToggle = "right";
+    } else if (leftRightToggle == "right") {
+      compiledEdge = edgeWrite(slicedContour[i][2], slicedContour[i][3], slicedContour[i][0], slicedContour[i][1], ext, printer_settings);
+      leftRightToggle = "left";
+    }
+
     returnCode += compiledEdge.edgeCode;
     ext = compiledEdge.ext;
     if (i < slicedContour.length - 1) {
-      var compiledMove = edgeMove(slicedContour[i][2], slicedContour[i][3], slicedContour[i + 1][0], slicedContour[i + 1][1], ext, printer_settings);
-      returnCode += compiledMove.edgeCode;
-      ext = compiledMove.ext;
+      var toNextEdge;
+      if (leftRightToggle == "left") {
+        toNextEdge = edgeWrite(slicedContour[i][2], slicedContour[i][3], slicedContour[i + 1][2], slicedContour[i + 1][3], ext, printer_settings);
+      } else if (leftRightToggle == "right") {
+        toNextEdge = edgeWrite(slicedContour[i][0], slicedContour[i][1], slicedContour[i + 1][0], slicedContour[i + 1][1], ext, printer_settings);
+      }
+
+      // returnCode += toNextEdge.edgeCode;
+      // ext = toNextEdge.ext;
     }
   }
   return {
@@ -537,7 +597,7 @@ function layerIncrement(speed, currentLayer, name, layerHeight) {
 }
 
 var sole_design = {
-  inset: 5
+  inset: 2
 };
 
 /**
@@ -566,6 +626,8 @@ $(document).ready(function () {
   var outline_points = [];
   var voronoi_points = [];
 
+  outline_points = preset_outline;
+
   voronoi_points = cellularGridSeed(3, 3, editor_width, editor_height, 50);
 
   // COMPUTED VARS
@@ -574,7 +636,7 @@ $(document).ready(function () {
 
   var voronoi = d3.voronoi().extent([[0, 0], [editor_width, editor_height]]);
 
-  var scaledVoronoi = d3.voronoi().extent([[0, 0], [real_width, real_height]]);
+  var scaledVoronoi = d3.voronoi().extent([[0, 0], [real_width * scaling, real_height * scaling]]);
 
   var dragged = null;
   var selected = outline_points[0];
@@ -584,8 +646,74 @@ $(document).ready(function () {
   var SensorSettings = {
     n_sensors: [0, 0]
   };
-  console.log(SoleMakerBackendConnection);
-  var solemakerBackend = new SoleMakerBackendConnection("/solemaker/data/test_data.json");
+
+  var websocket_enabled = false;
+  var host;
+  var socket;
+  var $txt = $("#data");
+  var $btnSend = $("#sendtext");
+
+  if (!("WebSocket" in window)) {
+    alert("Your browser does not support web sockets");
+  } else {
+    websocket_enabled = true;
+    var host = "ws://target.luon.net/ws";
+    var socket = new WebSocket(host);
+    $btnSend.on("click", function () {
+      var text = $txt.val();
+      if (text == "") {
+        return;
+      }
+      socket.send(text);
+      $txt.val("");
+    });
+
+    $txt.keypress(function (evt) {
+      if (evt.which == 13) {
+        $btnSend.click();
+      }
+    });
+    if (socket) {
+      socket.onopen = function () {
+        console.log("websocket opened");
+      };
+
+      socket.onmessage = function (msg) {
+        showWebSocketServerResponse(msg.data);
+      };
+
+      socket.onclose = function () {
+        console.log("websocket closed");
+      };
+    } else {
+      console.log("invalid socket");
+    }
+  }
+
+  function showWebSocketServerResponse(data) {
+    console.log("show websocket server response");
+    console.log(data);
+    var x_counter = 0;
+    var y_counter = 0;
+    var mappedData = [];
+    for (var i = 0; i < data.data.length; i++) {
+      mappedData.push({
+        value: data.data[i],
+        x: x_counter,
+        y: y_counter
+      });
+      x_counter += 1;
+      if (x_counter >= data.n_sensors[0]) {
+        x_counter = 0;
+        y_counter += 1;
+      }
+    }
+    SensorData = mappedData;
+    SensorSettings.n_sensors = data.n_sensors;
+    redraw();
+  }
+
+  var solemakerBackend = new SoleMakerBackendConnection("/data/test_data.json");
   solemakerBackend.getSensorData(function (data) {
     var x_counter = 0;
     var y_counter = 0;
@@ -745,7 +873,7 @@ $(document).ready(function () {
      */
     // Check if outline_points is round
     if (outline_points.length > 2) {
-      var sole_polys = generate_cells_without_outline_inset(outline_points, voronoi_points, voronoi, 5); // generate sole layer
+      var sole_polys = generate_cells_without_outline_inset(outline_points, voronoi_points, voronoi, sole_design.inset); // generate sole layer
       sole_cells = sole_polys;
       voronoi_cells = generate_cells_without_outline_inset(outline_points, voronoi_points, voronoi, 1);
       // var sliced_cells = slice_polygons(sole_polys);
@@ -903,16 +1031,11 @@ function generate_cells(outline_points, voronoi_seeds, voronoi, inset_size) {
 }
 
 function generate_cells_without_outline_inset(outline_points, voronoi_seeds, voronoi, inset_size) {
-  console.log("generate cells with outline inset");
   var sole_polys = [];
   var closed_outline_points = outline_points.concat([outline_points[0]]);
   var offset = new Offset();
-  console.log(voronoi_seeds);
-  console.log(voronoi);
-  console.log(voronoi.polygons(voronoi_seeds));
   for (var i = 0; i < voronoi_seeds.length; i++) {
     var voronoi_poly = voronoi.polygons(voronoi_seeds)[i];
-    console.log(voronoi_poly);
     var closed_voronoi_poly = voronoi_poly;
     closed_voronoi_poly.push([voronoi_poly[0][0], voronoi_poly[0][1]]);
     var clock_wise_voronoi;

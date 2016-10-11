@@ -4,20 +4,21 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF8" />
   <title>Sole Maker</title>
 
-  <link rel="stylesheet" href="/solemaker/assets/material.css" type="text/css" />
-  <link rel="stylesheet" href="/solemaker/build/css/all.css" type="text/css" />
+  <link rel="stylesheet" href="solemaker/assets/material.css" type="text/css" />
+  <link rel="stylesheet" href="solemaker/build/css/all.css" type="text/css" />
 
   <link href="https://fonts.googleapis.com/css?family=Dosis:400,300,600" rel="stylesheet" type="text/css">
 
   <script src="//d3js.org/d3.v4.min.js"></script>
-  <script src="/solemaker/assets/libraries/jquery-3.1.0.js"></script>
-  <script src="/solemaker/assets/libraries/martinez_changed.js"></script>
-  <script src="/solemaker/assets/libraries/offset.js"></script>
-  <script src="/solemaker/assets/libraries/react.js"></script>
-  <script src="/solemaker/assets/libraries/react-dom.js"></script>
+  <script src="solemaker/assets/libraries/jquery-3.1.0.js"></script>
+  <script src="solemaker/assets/libraries/martinez_changed.js"></script>
+  <script src="solemaker/assets/libraries/offset.js"></script>
+  <script src="solemaker/assets/libraries/react.js"></script>
+  <script src="solemaker/assets/libraries/react-dom.js"></script>
+  <script src="solemaker/assets/libraries/FileSaver.js"></script>
 
-  <script src="/solemaker/build/js/all.js"></script>
-  <script src="/solemaker/build/js/system_connections.js"></script>
+  <script src="solemaker/build/js/all.js"></script>
+  <script src="solemaker/build/js/system_connections.js"></script>
 </head>
 <body>
   <div class="ui-layer">
@@ -45,6 +46,14 @@
       </div>
       <div id="download-button" class="custom-button">
         <a id="download-link">download</a>
+      </div>
+      <h3>
+        Websocket
+      </h3>
+      <div id="send">
+        <input class="websocket-command-input" type="text" id="data" size="100" />
+        <br />
+        <input type="button" id="sendtext" value="send text" />
       </div>
     </div>
   </div>

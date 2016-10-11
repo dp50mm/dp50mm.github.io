@@ -222,3 +222,17 @@ h1 {
 .layer-editor .visible {
   height: auto;
 }
+h3 {
+  font-family: 'Dosis' !important;
+  font-size: 16px;
+  position: relative;
+  transition: left 0.5s;
+  -webkit-transition: left 0.5s;
+  text-transform: uppercase;
+  margin: 0px;
+  padding: 0px;
+}
+.websocket-command-input {
+  margin-left: 2px;
+  max-width: 100px;
+}
