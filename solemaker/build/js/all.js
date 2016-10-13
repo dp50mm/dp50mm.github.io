@@ -626,7 +626,7 @@ $(document).ready(function () {
   var outline_points = [];
   var voronoi_points = [];
 
-  outline_points = preset_outline;
+  // outline_points = preset_outline;
 
   voronoi_points = cellularGridSeed(3, 3, editor_width, editor_height, 50);
 
