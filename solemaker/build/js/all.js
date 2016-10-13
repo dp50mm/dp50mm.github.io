@@ -626,6 +626,8 @@ $(document).ready(function () {
   var outline_points = [];
   var voronoi_points = [];
 
+  outline_points = preset_outline;
+
   voronoi_points = cellularGridSeed(3, 3, editor_width, editor_height, 50);
 
   // COMPUTED VARS
@@ -655,7 +657,7 @@ $(document).ready(function () {
     alert("Your browser does not support web sockets");
   } else {
     websocket_enabled = true;
-    var host = "ws://target.luon.net/ws";
+    var host = "ws://target.luon.net:9090/ws";
     var socket = new WebSocket(host);
     $btnSend.on("click", function () {
       var text = $txt.val();
@@ -690,7 +692,9 @@ $(document).ready(function () {
 
   function showWebSocketServerResponse(data) {
     console.log("show websocket server response");
-    console.log(data);
+
+    var data = JSON.parse(data);
+    // console.log(data);
     var x_counter = 0;
     var y_counter = 0;
     var mappedData = [];
@@ -707,11 +711,12 @@ $(document).ready(function () {
       }
     }
     SensorData = mappedData;
+    // console.log(SensorData);
     SensorSettings.n_sensors = data.n_sensors;
     redraw();
   }
 
-  var solemakerBackend = new SoleMakerBackendConnection("http://dp50mm.github.io/solemaker/data/test_data.json");
+  var solemakerBackend = new SoleMakerBackendConnection("/data/test_data.json");
   solemakerBackend.getSensorData(function (data) {
     var x_counter = 0;
     var y_counter = 0;
@@ -927,6 +932,20 @@ $(document).ready(function () {
     }).attr("height", function () {
       return editor_height / SensorSettings.n_sensors[1];
     });
+
+    heat_cells.attr("style", function (d) {
+      return "fill:rgba(" + (255 - d.value * 5).toFixed(0) + ", " + (255 - d.value * 5).toFixed(0) + ", 255, 0.3);";
+    }).attr("x", function (d) {
+      return d.x * (editor_width / SensorSettings.n_sensors[0]);
+    }).attr("y", function (d) {
+      return d.y * (editor_height / SensorSettings.n_sensors[1]);
+    }).attr("width", function () {
+      return editor_width / SensorSettings.n_sensors[0];
+    }).attr("height", function () {
+      return editor_height / SensorSettings.n_sensors[1];
+    });
+
+    heat_cells.exit().remove();
 
     if (d3.event) {
       d3.event.preventDefault();
