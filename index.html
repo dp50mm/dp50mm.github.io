@@ -120,7 +120,8 @@
                   This is a step-by-step tutorial for implementing Aruco marker detection
                   and Neural Network phenotype detection in iOS with information overlays for <em>augmenting reality</em>.
                   It is written as documentation for <a href="http://www.erwinhoogerwoord.nl">my</a> graduation project.
-                  The goal of the project is to make observations and conclusions in experiments with growing plants more easily shareable by augmenting reality with digitally stored and analysed images.
+                  The goal of the project is to enable new ways of making observations and conclusions in experiments with growing plants and make them more easily shareable for DIY experimenters and plant growers by augmenting reality with digitally stored and analysed images.
+                  The goal in writing this tutorial is to contain all relevant conceptual and technical documentation.
                 </p>
                 <h3>Observations</h3>
                 <p>
@@ -151,12 +152,15 @@
                 </div>
                 <h3>Possibilities</h3>
                 <p>
-                  The application to be developed in this tutorial allows you to more easily compile series and collections of images along dimensions such as location, orientation and time.
+                  There are opportunities in both the capture and navigation of images.
+                  The application to be developed in this tutorial allows you to more easily <em>compile series and collections of images</em> along dimensions such as location, orientation and time.
+                  The application also enables you to view previously captured observations within the context of the current reality being captured in the live-camera.
                   A next step is to increase the number of dimensions for ordering images by generating algorithms (neural networks) to detect phenomena in the image.
                 </p>
                 <p>
-                  The Aruco markers are used for re-constructing 3d points from the 2d image plane.
-                  Because in the garden set-ups photographed the aruco markers remain stationary the camera orientation can be deducted from the marker orientation.
+                  The technique to capture the location, orientation and time of images is through the use of <a href="http://www.uco.es/investiga/grupos/ava/node/26">Aruco markers</a> (a type of <a href="https://en.wikipedia.org/wiki/Fiducial_marker">fiducial marker</a>).
+                  Aruco markers can be detected in an image by id as well as pose (location + orientation).
+                  In a garden setup the marker should remain stationary with the plant. Then the camera position can be deducted from the marker orientation, relative to previous images containing the same marker.
                 </p>
                 <h3>Functionalities</h3>
                 <ul>
@@ -186,14 +190,23 @@
                       It provides a camera to digitally capture a perspective on reality.
                     </li>
                     <li>
-                      A computer to analyse and augment the data.
+                      A computer to analyse and augment data.
                     </li>
                     <li>
-                      A touch-screen to display and interact with the captured data.
+                      A digital touch-screen to display for display and input of data.
                     </li>
                   </ul>
                 </p>
-
+                <p>
+                  Combining these things together, a livestream of the digital camera can be displayed and interacted with on the screen with computed augmentations.
+                </p>
+                <h2>System architecture</h2>
+                <p>
+                  In the following steps is described how the functionalities as specified above can be built on the iOS smartphone platform.
+                  Each of the described components requires code to enable the functionality.
+                  First an interaction model is described for analysing views.
+                  Secondly the iOS camera architecture is covered.
+                </p>
                 <h2>Interaction</h2>
                 <p>
                   Image detection and analysis produces numerous augmented views.
@@ -213,17 +226,74 @@
                 <p>
                   The iPhone has a powerful camera to capture live video streams for augmented reality applications.
                   It is controlable through the <a href="https://developer.apple.com/av-foundation/">AV Foundation framework</a> in the iOS operating system.
+                  First the user-facing functionalities are covered. These are the real-time camera stream and image capture.
+                  Both functionalities require precise control over the camera data flow through the AVFoundation framework, API and multi-threading of processes so that during the capture process the UI always remains responsive.
+
                 </p>
                 <h3>Real-time stream</h3>
                 <p>
                   The core of AR is the display and analysis of a live camera stream with overlays.
+                  Camera sensor data needs to be captured, processed, and displayed in real-time.
                 </p>
                 <h3>Image capture</h3>
                 <p>
                   In this application images can be captured to be integrated in the AR layers.
 
                 </p>
-                <h2 id="libraries">Libraries</h2>
+                <h3>AVFoundation structure</h3>
+                <p>
+                  The AVFoundation framework has defined multiple objects to control the hardware and data flows.
+                  The following schematic provides an overview of the data flow between the various objects.
+                </p>
+                <img src="/images/schematics/AVFoundation_structure-11.png" width="100%"  />
+                <ul>
+                  <li>
+                    <a href="https://developer.apple.com/reference/avfoundation/avcapturesession">AVCaptureSession</a> is the core object where everything comes together.
+                  </li>
+                  <li>
+                    <a href="https://developer.apple.com/reference/avfoundation/avcapturedevice">AVCaptureDevice</a> is the object representing the physical camera in the iOS device.
+                    It provides the input data (both audio and video) for an AVCaptureSession object.
+                  </li>
+                  <li>
+                    <a href="https://developer.apple.com/reference/avfoundation/avcaptureconnection">AVCaptureConnection</a> connects the input to an output through the AVCaptureSession.
+                  </li>
+                  <li>
+                    <a href="https://developer.apple.com/reference/avfoundation/avcapturephotooutput">AVCapturePhotoOutput</a> provides the software interface for capture workflows related to still photography.
+                  </li>
+                  <li>
+                    <a href="https://developer.apple.com/reference/avfoundation/avcapturephotooutput">AVCapturePhotoOutput</a> provides the software interface for capture workflows related to still photography.
+                  </li>
+                </ul>
+                <p>
+                  This defines the overall structure of the AVFoundation framework.
+                  To implement the specified functionalities of <em>real-time augmented streaming</em> and <em>image capture</em> two specific implementations need to be programmed in such a way that they do not interfere with each other in camera usage and processing capacity.
+                </p>
+                <h3>Real-time augmented streaming implementation</h3>
+                <p>
+
+                </p>
+                <h3>Capturing & storing photos</h3>
+
+                <p>
+                  To access the camera on various iOS devices an
+                  <a href="https://developer.apple.com/reference/avfoundation/avcapturedevice">AV capture device</a> object is created in the code.
+                </p>
+                <p>
+                  When you want to capture a photo you call the function <a href="https://developer.apple.com/reference/avfoundation/avcapturephotooutput/1648765-capturephoto">capturePhoto()</a> and pass it two objects.
+                </p>
+                <ul>
+                  <li>
+                    Photo Settings.
+                    <br />
+                    <a href="https://developer.apple.com/reference/avfoundation/avcapturephotosettings">AVCapturePhotoSettings</a>
+                  </li>
+                  <li>
+                    The photo capture delegate.
+                    <br />
+                    <a href="https://developer.apple.com/reference/avfoundation/avcapturephotocapturedelegate">AVCapturePhotoCaptureDelegate</a>
+                  </li>
+                </ul>
+                <h2 id="libraries">Image analysis</h2>
                 <p>
                   This application of computer vision has  been built and implemented in various open and closed libraries.
                   To detect these the openCV library is used with the Aruco module.
@@ -339,6 +409,22 @@
                 </p>
                 <div id="container">
                 </div>
+                <h2>Augmentation layers</h2>
+                <p>
+                  You can do a couple of augmentations to the data stream.
+                  The input data stream can be filtered. A simple example is cropping the photo.
+                  The input data stream can be transformed. For example the photo can be made black & white.
+                  The input data stream can be analysed. For example markers can be detected.
+                  The output data stream can be adapted in various ways as well.
+                  Extra information can be added. For example a timer.
+                  In this application previously captured photos (i.e. observations) of the same marker should be recalled and displayed
+                  within the context of a currently visible marker in the realtime camera stream.
+
+                </p>
+                <h3>3D Graphics</h3>
+                <p>
+                  To work with and display 3d graphics on a high level, Apple has created the SceneKit library.
+                </p>
             </div>
         </div>
       </main>

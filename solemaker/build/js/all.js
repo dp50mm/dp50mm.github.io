@@ -306,6 +306,26 @@ var printer_settings = {
   GCode_rounding: 2
 };
 
+function mapSensorData(data) {
+  console.log(data);
+  var x_counter = 0;
+  var y_counter = 0;
+  var mappedData = [];
+  for (var i = 0; i < data.data.length; i++) {
+    mappedData.push({
+      value: data.data[i],
+      x: x_counter,
+      y: y_counter
+    });
+    x_counter += 1;
+    if (x_counter >= data.n_sensors[0]) {
+      x_counter = 0;
+      y_counter += 1;
+    }
+  }
+  return mappedData;
+}
+
 function slice_polygons(polygons, printer_settings) {
   var sliced_polygons = [];
   for (var i = 0; i < polygons.length; i++) {
@@ -691,49 +711,15 @@ $(document).ready(function () {
   }
 
   function showWebSocketServerResponse(data) {
-    console.log("show websocket server response");
-
     var data = JSON.parse(data);
-    // console.log(data);
-    var x_counter = 0;
-    var y_counter = 0;
-    var mappedData = [];
-    for (var i = 0; i < data.data.length; i++) {
-      mappedData.push({
-        value: data.data[i],
-        x: x_counter,
-        y: y_counter
-      });
-      x_counter += 1;
-      if (x_counter >= data.n_sensors[0]) {
-        x_counter = 0;
-        y_counter += 1;
-      }
-    }
-    SensorData = mappedData;
-    // console.log(SensorData);
+    SensorData = mapSensorData(data);
     SensorSettings.n_sensors = data.n_sensors;
     redraw();
   }
 
   var solemakerBackend = new SoleMakerBackendConnection("/data/test_data.json");
   solemakerBackend.getSensorData(function (data) {
-    var x_counter = 0;
-    var y_counter = 0;
-    var mappedData = [];
-    for (var i = 0; i < data.data.length; i++) {
-      mappedData.push({
-        value: data.data[i],
-        x: x_counter,
-        y: y_counter
-      });
-      x_counter += 1;
-      if (x_counter >= data.n_sensors[0]) {
-        x_counter = 0;
-        y_counter += 1;
-      }
-    }
-    SensorData = mappedData;
+    SensorData = mapSensorData(data);
     SensorSettings.n_sensors = data.n_sensors;
     redraw();
   });
@@ -893,27 +879,6 @@ $(document).ready(function () {
         return d ? "M" + d.join("L") + "Z" : null;
       });
       sole_poly_selection.exit().remove();
-
-      // var sliced_edges = svg.selectAll(".sliced-edge").remove();
-      // for(var i = 0; i < sliced_cells.length; i++) {
-      //   for (var j = 0; j < sliced_cells[i].length; j++) {
-      //     svg.append("path")
-      //       .attr("class","sliced-edge")
-      //       .attr("d", function(d) {
-      //         return "M"+sliced_cells[i][j][0]+" "+sliced_cells[i][j][1]+" L"+sliced_cells[i][j][2]+" "+sliced_cells[i][j][3]+" ";
-      //       });
-      //   }
-      // }
-
-      // sliced_edges.enter()
-      //   .append("path")
-      //   .attr("class","sliced-edge")
-      //   .attr("d", function(d) {
-      //     return "M"+d[0]+" "+d[1]+"L"+d[2]+" "+d[3]+" ";
-      //   });
-      // sliced_edges.attr("d", function(d) { return "M"+d[0]+" "+d[1]+"L"+d[2]+" "+d[3]+" "; });
-      // sliced_edges.exit().remove();
-
     }
 
     /**
@@ -923,26 +888,26 @@ $(document).ready(function () {
 
     heat_cells.enter().append("rect").attr("style", function (d) {
       return "fill:rgba(" + (255 - d.value * 5).toFixed(0) + ", " + (255 - d.value * 5).toFixed(0) + ", 255, 0.3);";
-    }).attr("x", function (d) {
-      return d.x * (editor_width / SensorSettings.n_sensors[0]);
     }).attr("y", function (d) {
-      return d.y * (editor_height / SensorSettings.n_sensors[1]);
+      return d.x * (editor_height / SensorSettings.n_sensors[0]);
+    }).attr("x", function (d) {
+      return d.y * (editor_width / SensorSettings.n_sensors[1]);
     }).attr("width", function () {
-      return editor_width / SensorSettings.n_sensors[0];
+      return editor_width / SensorSettings.n_sensors[1];
     }).attr("height", function () {
-      return editor_height / SensorSettings.n_sensors[1];
+      return editor_height / SensorSettings.n_sensors[0];
     });
 
     heat_cells.attr("style", function (d) {
       return "fill:rgba(" + (255 - d.value * 5).toFixed(0) + ", " + (255 - d.value * 5).toFixed(0) + ", 255, 0.3);";
-    }).attr("x", function (d) {
-      return d.x * (editor_width / SensorSettings.n_sensors[0]);
     }).attr("y", function (d) {
-      return d.y * (editor_height / SensorSettings.n_sensors[1]);
+      return d.x * (editor_height / SensorSettings.n_sensors[0]);
+    }).attr("x", function (d) {
+      return d.y * (editor_width / SensorSettings.n_sensors[1]);
     }).attr("width", function () {
-      return editor_width / SensorSettings.n_sensors[0];
+      return editor_height / SensorSettings.n_sensors[0];
     }).attr("height", function () {
-      return editor_height / SensorSettings.n_sensors[1];
+      return editor_width / SensorSettings.n_sensors[1];
     });
 
     heat_cells.exit().remove();
