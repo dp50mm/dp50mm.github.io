@@ -1,0 +1,58 @@
+body {
+  background: white !important;
+}
+
+.svg-layer {
+  position:absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  height:90vh;
+  z-index:1;
+  pointer-events:none;
+}
+
+.ui-layer {
+  position: absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  pointer-events:none;
+  z-index:1000;
+}
+
+.side-bar {
+  z-index:100;
+  pointer-events:auto;;
+  position:absolute;
+  left:20px;
+  width:150px;
+  top:80px;
+}
+
+.custom-button {
+  font-family:"Nitti-Normal" !important;
+  position: relative;
+  transition: left 0.5s;
+  -webkit-transition: left 0.5s;
+  cursor:pointer;
+  user-select: none;
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
+.draw-state-button {
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+.custom-button:hover {
+  left: 5px;
+}
+
+.state-toggled {
+  left:5px;
+  font-weight:600;
+}

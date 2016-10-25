@@ -1,0 +1,314 @@
+.layer-preview-svg {
+  position: absolute;
+  margin-top: 150px;
+  margin-bottom: 150px;
+  border: 0px !important;
+  transform: rotate(-45deg) skew(15deg, 15deg) scale(0.8);
+  opacity: 0.2;
+  overflow: visible !important;
+}
+.layer-preview-labels {
+  position: absolute;
+  font-family: "Nitti-Normal";
+  opacity: 0;
+}
+.layer-preview-svg:hover {
+  opacity: 1;
+}
+.layer-preview-svg > path:hover {
+  opacity: 1;
+}
+.layers-preview {
+  background: white !important;
+  z-index: 100;
+  position: relative;
+  height: 150vh;
+  padding: 50px;
+  padding-top: 50px;
+  padding-left: 200px;
+}
+.contour-outline-preview {
+  stroke-width: 2px;
+  fill: transparent;
+  stroke: black;
+  opacity: 1;
+}
+.contour-fill-preview {
+  stroke-width: 4px;
+  fill: rgba(50, 150, 50, 0.5);
+  stroke: #00c800;
+  opacity: 1;
+}
+.cell-outline-preview {
+  stroke-width: 2px;
+  fill: transparent;
+  stroke: green;
+  opacity: 1;
+}
+
+body {
+  background: white !important;
+}
+.svg-layer {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 90vh;
+  z-index: 1;
+  pointer-events: none;
+}
+.ui-layer {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  pointer-events: none;
+  z-index: 1000;
+}
+.side-bar {
+  z-index: 100;
+  pointer-events: auto;
+  position: absolute;
+  left: 20px;
+  width: 150px;
+  top: 80px;
+}
+.custom-button {
+  font-family: "Nitti-Normal" !important;
+  position: relative;
+  transition: left 0.5s;
+  -webkit-transition: left 0.5s;
+  cursor: pointer;
+  user-select: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.draw-state-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.custom-button:hover {
+  left: 5px;
+}
+.state-toggled {
+  left: 5px;
+  font-weight: 600;
+}
+
+.right-side-bar {
+  position: absolute;
+  right: 30px;
+  top: 80px;
+  width: 300px;
+}
+.right-side-bar > div {
+  position: relative;
+}
+.right-side-bar > div > h3 {
+  font-family: "Acronym-Bold" !important;
+  text-transform: none !important;
+  position: absolute;
+  text-align: right;
+  left: -70px;
+  top: -5px;
+}
+.right-side-bar > div > p {
+  font-family: "Nitti-normal";
+}
+
+rect {
+  fill: none;
+  pointer-events: all;
+}
+circle,
+.outline-line {
+  fill: none;
+  stroke: black;
+  stroke-width: 1.5px;
+}
+.outline-line {
+  stroke-width: 2.5px;
+  stroke: #559e37;
+}
+.outline-circle {
+  fill: white;
+  stroke: black;
+}
+circle {
+  cursor: move;
+}
+.selected {
+  fill: #EA4E3C;
+  stroke: #EA4E3C;
+}
+.svg-container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 256px;
+}
+.voronoi-cell {
+  fill: none;
+  stroke: rgba(150, 150, 150, 0.3);
+  stroke-width: 1px;
+  pointer-events: none;
+}
+.voronoi-circle {
+  fill: #5fb13d;
+  stroke: #366623;
+}
+.voronoi-circle:hover {
+  fill: #366623;
+}
+.inset-cell {
+  fill: none;
+  stroke: #6BC048;
+  stroke-width: 1px;
+  pointer-events: none;
+}
+.sole-cell {
+  fill: #6bc048;
+  stroke: #559e37;
+  opacity: 0.85;
+  stroke-width: 2px;
+  pointer-events: none;
+}
+.sliced-edge {
+  stroke: blue;
+  stroke-width: 0.5px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.binary-cell {
+  stroke-width: 1px;
+  opacity: 0.4;
+}
+svg {
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 100;
+  pointer-events: auto;
+  overflow: visible;
+}
+svg:focus {
+  outline-width: 0;
+}
+.scaling-box {
+  pointer-events: none;
+}
+
+h1 {
+  font-family: "Nitti-Normal";
+  font-size: 30px;
+  text-align: left;
+  margin: 20px;
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Nitti-Normal';
+  src: url("/assets/fonts/nitti-normal-v500.eot");
+  src: url("/assets/fonts/nitti-normal-v500?#iefix") format("embedded-opentype"), url("/assets/fonts/nitti-normal-v500.woff2") format("woff2"), url("/assets/fonts/nitti-normal-v500.woff") format("woff");
+}
+
+.print-layer {
+  border-left: 2px solid black;
+}
+.print-layer h3 {
+  font-size: 14px;
+  font-family: "Nitti-Normal";
+  font-weight: 600;
+  margin: 2px;
+  padding: 2px;
+  line-height: 14px;
+}
+.print-layer p {
+  font-family: "Nitti-Normal";
+  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+  margin-left: 5px;
+  line-height: 14px;
+}
+.print-layer p span {
+  display: inline-block;
+}
+.print-layer p span input {
+  margin-left: 2px;
+  max-width: 60px;
+}
+.layer-editor {
+  transition: height 0.5s;
+  overflow: hidden;
+}
+.layer-editor h1 {
+  font-size: 20px;
+  padding: 0px;
+  margin: 0px;
+}
+.layer-editor h1 #layers-show-toggle {
+  cursor: pointer;
+  color: blue;
+  font-size: 16px;
+  padding: 2px;
+}
+.layer-editor h1 #layers-show-toggle:hover {
+  font-weight: 600;
+}
+.hide {
+  height: 0px;
+}
+.layer-editor .visible {
+  height: auto;
+}
+h3 {
+  font-family: "Nitti-Normal" !important;
+  font-size: 16px;
+  position: relative;
+  transition: left 0.5s;
+  -webkit-transition: left 0.5s;
+  text-transform: uppercase;
+  margin: 0px;
+  padding: 0px;
+}
+#download-link {
+  cursor: pointer;
+  color: #EA4E3C;
+}
+#download-link:hover {
+  text-decoration: underline;
+}
+.websocket-command-input {
+  margin-left: 2px;
+  max-width: 100px;
+}
+#left-foot-toggle {
+  position: absolute;
+  left: -65px;
+  bottom: 50px;
+  cursor: pointer;
+  z-index: 100;
+  pointer-events: auto;
+}
+#left-foot-toggle:hover {
+  opacity: 0.8;
+}
+#right-foot-toggle {
+  position: absolute;
+  right: -65px;
+  bottom: 50px;
+  cursor: pointer;
+  z-index: 100;
+  pointer-events: auto;
+}
+#right-foot-toggle:hover {
+  opacity: 0.8;
+}

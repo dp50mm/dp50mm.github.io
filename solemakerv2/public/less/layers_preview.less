@@ -1,0 +1,56 @@
+.layer-preview-svg {
+  position:absolute;
+  margin-top:150px;
+  margin-bottom:150px;
+  border: 0px !important;
+  transform: rotate(-45deg) skew(15deg, 15deg) scale(0.8);
+  opacity:0.2;
+  overflow: visible !important;
+}
+
+.layer-preview-labels {
+  position:absolute;
+  font-family: "Nitti-Normal";
+  opacity:0;
+}
+
+.layer-preview-svg:hover {
+  opacity:1;
+}
+
+.layer-preview-svg > path:hover {
+  opacity:1;
+}
+
+.layers-preview {
+  background:white !important;
+  z-index:100;
+  position:relative;
+  height:150vh;
+  padding:50px;
+  padding-top:50px;
+  padding-left:200px;
+}
+
+
+
+.contour-outline-preview {
+  stroke-width: 2px;
+  fill: transparent;
+  stroke: black;
+  opacity:1;
+}
+
+.contour-fill-preview {
+  stroke-width: 4px;
+  fill: rgba(50,150,50,0.5);
+  stroke: rgba(0,200,0,1);
+  opacity: 1;
+}
+
+.cell-outline-preview {
+  stroke-width: 2px;
+  fill: transparent;
+  stroke: green;
+  opacity: 1;
+}

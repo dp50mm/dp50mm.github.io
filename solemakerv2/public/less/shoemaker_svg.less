@@ -1,0 +1,105 @@
+rect {
+  fill: none;
+  pointer-events: all;
+}
+
+circle,
+.outline-line {
+  fill: none;
+  stroke: black;
+  stroke-width: 1.5px;
+}
+
+.outline-line {
+  stroke-width:2.5px;
+  stroke:darken(#6BC048,10%);
+}
+
+.outline-circle {
+  fill:white;
+  stroke:black;
+
+}
+
+circle {
+  cursor: move;
+}
+
+.selected {
+  fill: #EA4E3C;
+  stroke: #EA4E3C;
+}
+
+.svg-container {
+  position:relative;
+  margin-left:auto;
+  margin-right:auto;
+  width:256px;
+}
+
+.voronoi-cell {
+  fill:none;
+  stroke:rgba(150,150,150,0.3);
+  stroke-width:1px;
+  pointer-events: none;
+}
+
+.voronoi-circle {
+  fill:darken(#6BC048,05%);
+  stroke:darken(#6BC048,25%);
+}
+
+.voronoi-circle:hover {
+  fill:darken(#6BC048,25%);
+}
+
+.inset-cell {
+  fill:none;
+  stroke:#6BC048;
+  stroke-width:1px;
+  pointer-events: none;
+}
+
+.sole-cell {
+  fill:rgba(107,192,72,1);
+  stroke:darken(#6BC048, 10%);
+  opacity:0.85;
+  stroke-width:2px;
+  pointer-events: none;
+}
+
+.sliced-edge {
+  stroke: blue;
+  stroke-width:0.5px;
+  opacity:0.4;
+  pointer-events:none;
+}
+
+.binary-cell {
+  stroke-width:1px;
+  opacity:0.4;
+}
+
+svg {
+  margin-left:auto;
+  margin-right:auto;
+  border-top:1px dashed rgba(0,0,0,0.1);
+  border-bottom:1px dashed rgba(0,0,0,0.1);
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index:100;
+  pointer-events:auto;
+  overflow:visible;
+}
+
+svg:focus {
+  outline-width: 0;
+}
+
+
+.scaling-box {
+  pointer-events:none;
+}
