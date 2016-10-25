@@ -215,8 +215,8 @@ h1 {
 }
 @font-face {
   font-family: 'Nitti-Normal';
-  src: url("/assets/fonts/nitti-normal-v500.eot");
-  src: url("/assets/fonts/nitti-normal-v500?#iefix") format("embedded-opentype"), url("/assets/fonts/nitti-normal-v500.woff2") format("woff2"), url("/assets/fonts/nitti-normal-v500.woff") format("woff");
+  src: url("http://dp50mm.github.io/solemakerv2/assets/fonts/nitti-normal-v500.eot");
+  src: url("http://dp50mm.github.io/solemakerv2/assets/fonts/nitti-normal-v500?#iefix") format("embedded-opentype"), url("http://dp50mm.github.io/solemakerv2/assets/fonts/nitti-normal-v500.woff2") format("woff2"), url("http://dp50mm.github.io/solemakerv2/assets/fonts/nitti-normal-v500.woff") format("woff");
 }
 
 .print-layer {
